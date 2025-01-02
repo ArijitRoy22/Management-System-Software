@@ -1,0 +1,286 @@
+.final-container{
+    display: flex;
+    justify-content: center; 
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* padding: 20px; */
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    width: 81vw;
+    overflow: hidden;
+    /* border: 3px solid black; */
+}
+
+
+/* .final-container1{
+    display: flex;
+    flex-direction: column;
+    
+    width: 80vw;
+    padding: 20px;
+    margin-bottom: 10%;
+} 
+
+.chart-container1{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 3%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    align-items: center;
+}
+*/
+
+.Overview-container {
+    background-color: rgb(238, 231, 224);
+    padding-left: 3%;
+    position: relative;
+    z-index: 99;
+    margin-left: 192.953px;
+    width: 87vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.chart-container{
+  width: 349.914px;
+}
+.chart-container, .chart-container1 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* display: flex;
+  flex-direction: column; */
+  overflow: scroll;
+  border: 1px solid pink;
+  align-items: center; 
+}
+
+.chart-container1{
+  width: 699.836px;
+}
+
+
+.chart1 {
+    width: 100%; 
+    text-align: center;
+}
+
+.chart2 {
+  display: flex; /* Use flex to make scrolling work properly */
+  flex-direction: column;
+  min-width: 1000px; /* Minimum width for smaller bar counts */
+  width: calc(50px * 20); 
+  width: auto; /* Set the width to auto */
+  padding-left: 10px;
+  text-align: center;
+  overflow-x: scroll; /* Enable horizontal scrolling */
+}
+
+.chart2::-webkit-scrollbar {
+  height: 8px; /* Height of the scrollbar */
+}
+
+
+/* .line-chart1, .line-chart2{
+    width: 100%;
+    text-align: center;
+    z-index: 90;
+} */
+
+/* h2 {
+    margin-bottom: 20px; 
+    font-size: 24px;
+    color: #8a8a8a;
+} */
+
+
+/* .counts-container {
+    display: flex; 
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.EmployeeCount, .TimeCount {
+    background-color: white;
+    padding-left: 0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 36vw;
+    display: flex;
+    align-items: center;
+} */
+
+.counts-container {
+    display: flex;
+    column-gap: 34px;
+    margin-left: 2%;
+    margin-top: 3%;
+}
+
+.EmployeeCount, .TimeCount{
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 36vw;
+    color: #8a8a8a;
+    border: 1px solid pink;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* .filter-container{
+    display: flex;
+    position: absolute;
+    right: 45px;
+    top: 9%;
+} */
+
+/* .title{
+    color: #685c5c;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+    margin-left: 5px;
+} */
+
+
+/* .EmployeeTable {
+    background-color: white;
+    padding: 20px;
+    width: 77vw;
+    color: #8a8a8a;
+    border-radius: 20px;
+    margin-left: 2%;
+    margin-top: 8%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.EmployeeTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.EmployeeTable th, .EmployeeTable td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+} */
+
+
+/* .EmployeeTable {
+    background-color: white;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    width: 77vw;
+    color: #8a8a8a;
+    border-radius: 20px;
+    margin-left: 2%;
+    margin-top: 8%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.EmployeeTable table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; 
+} 
+
+.EmployeeTable th, .EmployeeTable td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: normal; 
+}
+
+.EmployeeTable th{
+    position: sticky;
+}
+.project-cell {
+    display: inline-block; 
+    margin-right: 10px;
+    max-width: 100%; 
+    white-space: break-spaces;
+    word-wrap: break-word;
+} */
+  
+ .EmployeeTable {
+    margin-left: 25px;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 1150px;
+    border: 1px solid pink;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+    overflow-x: scroll;
+  }
+  
+
+  .EmployeeTable table {
+    width: 800px; 
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: scroll;
+  }
+
+  .EmployeeTable::-webkit-scrollbar {
+    display: none;
+  }
+  .table-container{
+    width: 1150px;
+  }
+  
+  .EmployeeTable th,
+  .EmployeeTable td {
+    padding: 12px 15px;
+    padding-left: 50px;
+    /* text-align: center; */
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    /* border-right: 1px solid pink; */
+    /* border-left: 1px solid pink; */
+  }
+  
+  .EmployeeTable th {
+    background-color: #f4f4f4;
+    /* padding-left: 80px; */
+  }
+
+  .EmployeeTable tbody {
+    max-height: 280px;
+    overflow-y: auto;
+    display: block;
+  }
+  
+  .EmployeeTable thead,
+  .EmployeeTable tbody tr {
+    display: table;
+    width: 107.69em;
+    table-layout: fixed;
+  }
+  
+  .EmployeeTable tbody::-webkit-scrollbar {
+    height: 6px; 
+    display: none;
+  }
+  
+  .EmployeeTable tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .EmployeeTable tbody::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .EmployeeTable tbody::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }   

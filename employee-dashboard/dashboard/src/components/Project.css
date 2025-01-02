@@ -1,0 +1,126 @@
+.Project-container {
+    background-color: rgb(238, 231, 224);
+    padding-left: 3%;
+    position: relative;
+    z-index: 99;
+    margin-left: 192.953px;
+    width: 87vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.ProjectBar-container{
+    display: flex;
+    justify-content: center; 
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* padding: 20px; */
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    width: 81vw;
+    overflow: hidden;
+}
+
+
+.Projectchart-container{
+    width: 1110px; 
+}
+
+.Projectchart-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* display: flex;
+    flex-direction: column; */
+    overflow: scroll;
+    border: 1px solid pink;
+    align-items: center; 
+}
+
+
+.ProjectBarchart1 {
+    display: flex; /* Use flex to make scrolling work properly */
+    flex-direction: column;
+    min-width: 1000px; /* Minimum width for smaller bar counts */
+    width: calc(50px * 20); 
+    width: auto; /* Set the width to auto */
+    padding-left: 10px;
+    text-align: center;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+}
+
+.ProjectTable {
+    margin-left: 25px;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 1150px;
+    border: 1px solid pink;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+    overflow-x: scroll;
+  }
+  
+
+  .ProjectTable table {
+    width: 800px; 
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    /* border: 3px solid orange; */
+    overflow: scroll;
+  }
+
+  .ProjectTable::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .ProjectTable th,
+  .ProjectTable td {
+    padding: 12px 15px;
+    padding-left: 50px;
+    /* text-align: center; */
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    /* border-right: 3px solid green; */
+    /* border-left: 3px solid hotpink; */
+  }
+  
+  .ProjectTable th {
+    background-color: #f4f4f4;
+    /* padding-left: 80px; */
+  }
+
+  .ProjectTable tbody {
+    max-height: 280px;
+    overflow-y: auto;
+    /* display: block; */
+  }
+  
+  .ProjectTable thead,
+  .ProjectTable tbody tr {
+    /* display: table; */
+    width: 100.69em;
+    /* table-layout: fixed; */
+  }
+  
+  .ProjectTable tbody::-webkit-scrollbar {
+    height: 6px; 
+    display: none;
+  }
+  
+  .ProjectTable tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .ProjectTable tbody::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .ProjectTable tbody::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }   

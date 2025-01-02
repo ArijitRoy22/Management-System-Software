@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+}
+
+/* .sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+} */
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.stats {
+  margin-bottom: 20px;
+}
