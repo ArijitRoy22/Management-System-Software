@@ -1,0 +1,2 @@
+*.pack filter=lfs diff=lfs merge=lfs -text
+employee-dashboard/dashboard/node_modules/.cache/*.pack filter=lfs diff=lfs merge=lfs -text
