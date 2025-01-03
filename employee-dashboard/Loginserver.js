@@ -76,14 +76,14 @@ app.post('/login', (req, res) => {
 
             res.cookie('token', token, {
                 httpOnly: true, // Prevent access from JavaScript
-                secure: false,  // Set to false for local testing (use true for HTTPS)
+                secure: true,  // Set to false for local testing (use true for HTTPS)
                 sameSite: 'Lax', // Allow cookies for the same origin
                 maxAge: 3600000,
             });
             
             res.cookie('role', user.role, {
                 httpOnly: false, // Allow frontend access
-                secure: false,  // Set to false for local testing (use true for HTTPS)
+                secure: true,  // Set to false for local testing (use true for HTTPS)
                 sameSite: 'Lax',
                 maxAge: 3600000,
             });
