@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
     origin: ['https://arijitroy22.github.io'], // Allow only your frontend app
     methods: ['GET', 'POST'],
-    credentials: true,
+    credentials: false,
 }));
 app.use(express.json());
 
