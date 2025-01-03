@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://ArijitRoy22.github.io'], // Allow only your frontend app
+    origin: ['http://localhost:3000', 'https://arijitroy22.github.io'], // Allow only your frontend app
     methods: ['GET', 'POST'],
     credentials: true, // Allow cookies to be sent
 }));
@@ -69,7 +69,7 @@ app.post('/login', (req, res) => {
 
             res.cookie('token', token, {
                 httpOnly: true,
-                secure: false,
+                secure: true,
                 sameSite: 'Strict',
                 maxAge: 3600000,
             });
