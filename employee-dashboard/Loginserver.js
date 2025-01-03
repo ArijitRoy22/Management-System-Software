@@ -68,32 +68,25 @@ app.post('/login', (req, res) => {
             const csrfToken = jwt.sign({}, CSRF_SECRET, { expiresIn: '1h' });
 
             res.cookie('token', token, {
-                httpOnly: true,
-                secure: true,
-                sameSite: 'Strict',
-                maxAge: 3600000,
-            });
-
-            res.cookie('token', token, {
-                httpOnly: true, // Prevent access from JavaScript
-                secure: true,  // Set to false for local testing (use true for HTTPS)
-                sameSite: 'Lax', // Allow cookies for the same origin
-                maxAge: 3600000,
+                httpOnly: true, // Prevent access via JavaScript
+                secure: true,   // Ensure cookies are sent over HTTPS
+                sameSite: 'None', // Required for cross-origin cookies
+                maxAge: 3600000, // Set cookie expiration time (1 hour)
             });
             
             res.cookie('role', user.role, {
-                httpOnly: false, // Allow frontend access
-                secure: true,  // Set to false for local testing (use true for HTTPS)
-                sameSite: 'Lax',
+                httpOnly: false, // Allow access in frontend
+                secure: true,    // Ensure cookies are sent over HTTPS
+                sameSite: 'None',
                 maxAge: 3600000,
             });
             
             res.cookie('csrfToken', csrfToken, {
                 httpOnly: false,
-                secure: false,  // Set to false for local testing (use true for HTTPS)
-                sameSite: 'Lax',
+                secure: true,
+                sameSite: 'None',
                 maxAge: 3600000,
-            });
+            });            
 
             res.json({ message: 'Login successful' });
         });
