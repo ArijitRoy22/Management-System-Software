@@ -44,7 +44,7 @@ function App() {
 
     const handleLogout = async () => {
         try {
-            const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://login-backend-ayx4.onrender.com/logout';
+            const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://management-system-sofware.onrender.com/logout';
             await axios.post(backendUrl, {}, { withCredentials: true });
             localStorage.clear(); // Clear localStorage
             setRole(null);
