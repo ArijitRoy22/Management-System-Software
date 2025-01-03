@@ -31,8 +31,11 @@ const Login = ({ onLogin }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const backendUrl = process.env.REACT_APP_BACKEND_URL + '/login';
+            const backendUrl = process.env.REACT_APP_BACKEND_URL 
+            ? process.env.REACT_APP_BACKEND_URL + '/login' 
+            : 'http://localhost:5002/login';
             await axios.post(backendUrl, { email, password }, { withCredentials: true });
+            console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
     
             const role = Cookies.get('role');
             if (role) {
