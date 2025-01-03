@@ -32,13 +32,17 @@ function App() {
 
     // Redirect based on role
     useEffect(() => {
-        if (role === 4) {
-            navigate('/Project');
-        } else if (role === 5) {
-            navigate('/Management-System-Sofware');
+        if (role !== null) {
+            if (role === 4) {
+                navigate('/Project');
+            } else if (role === 5) {
+                navigate('/Management-System-Sofware');
+            } else if (role === 2) {
+                navigate('/Management-System-Sofware');
+            }
         }
     }, [role, navigate]);
-
+    
     const handleLogin = (role) => {
         setRole(role);
     };

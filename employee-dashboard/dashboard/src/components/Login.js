@@ -38,12 +38,14 @@ const Login = ({ onLogin }) => {
             );
     
             const role = Cookies.get('role');
+            console.log('Retrieved role:', role);
             if (role) {
                 onLogin(parseInt(role, 10));
             } else {
                 setError('Failed to retrieve role from cookies');
             }
         } catch (error) {
+            console.error('Login error:', error);
             setError('Invalid credentials');
         }
     };

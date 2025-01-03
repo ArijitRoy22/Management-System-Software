@@ -16,13 +16,17 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser()); // Parse cookies
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    waitForConnections: true,
+    connectionLimit: 1000, // Adjust as per your requirement
+    queueLimit: 0
 });
+
 
 // Load secrets from the environment file
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -43,6 +47,8 @@ app.post('/logout', (req, res) => {
 // Login route
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
+    console.log('Request received:', req.body);
+    console.log('Cookies sent:', res.getHeaders()['set-cookie']);
 
     const query = 'SELECT * FROM users WHERE email = ?';
     db.execute(query, [email], (err, results) => {
@@ -70,19 +76,27 @@ app.post('/login', (req, res) => {
                 maxAge: 3600000,
             });
 
+            res.cookie('token', token, {
+                httpOnly: true, // Prevent access from JavaScript
+                secure: false,  // Set to false for local testing (use true for HTTPS)
+                sameSite: 'Lax', // Allow cookies for the same origin
+                maxAge: 3600000,
+            });
+            
             res.cookie('role', user.role, {
                 httpOnly: false, // Allow frontend access
-                secure: false,
-                sameSite: 'Strict',
+                secure: false,  // Set to false for local testing (use true for HTTPS)
+                sameSite: 'Lax',
                 maxAge: 3600000,
             });
-
+            
             res.cookie('csrfToken', csrfToken, {
                 httpOnly: false,
-                secure: false,
-                sameSite: 'Strict',
+                secure: false,  // Set to false for local testing (use true for HTTPS)
+                sameSite: 'Lax',
                 maxAge: 3600000,
             });
+            
 
             console.log('Cookies sent:', { role: user.role, csrfToken }); // Debugging
 
