@@ -1,8 +1,9 @@
 {
   "name": "employee-dashboard",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "LoginServer.js",
   "scripts": {
+    "start": "node LoginServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
