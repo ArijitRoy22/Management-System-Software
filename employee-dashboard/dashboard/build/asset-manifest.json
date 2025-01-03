@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Management-System-Sofware/static/css/main.80149a06.css",
-    "main.js": "/Management-System-Sofware/static/js/main.9ef979cc.js",
+    "main.js": "/Management-System-Sofware/static/js/main.a4eba395.js",
     "static/js/453.51b20bab.chunk.js": "/Management-System-Sofware/static/js/453.51b20bab.chunk.js",
     "static/media/overview.png": "/Management-System-Sofware/static/media/overview.4bf821d1ded1bff532bb.png",
     "static/media/download-removebg-preview.png": "/Management-System-Sofware/static/media/download-removebg-preview.d3a7f460ea9596dc5194.png",
     "index.html": "/Management-System-Sofware/index.html",
     "main.80149a06.css.map": "/Management-System-Sofware/static/css/main.80149a06.css.map",
-    "main.9ef979cc.js.map": "/Management-System-Sofware/static/js/main.9ef979cc.js.map",
+    "main.a4eba395.js.map": "/Management-System-Sofware/static/js/main.a4eba395.js.map",
     "453.51b20bab.chunk.js.map": "/Management-System-Sofware/static/js/453.51b20bab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.80149a06.css",
-    "static/js/main.9ef979cc.js"
+    "static/js/main.a4eba395.js"
   ]
 }

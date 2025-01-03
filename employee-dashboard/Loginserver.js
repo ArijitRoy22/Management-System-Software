@@ -68,7 +68,7 @@ app.post('/login', (req, res) => {
             const csrfToken = jwt.sign({}, CSRF_SECRET, { expiresIn: '1h' });
 
             res.cookie('token', token, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: true, // Cookies sent only over HTTPS
                 sameSite: 'None', // Cross-site cookies
                 maxAge: 3600000,
@@ -77,6 +77,7 @@ app.post('/login', (req, res) => {
                 httpOnly: false, // Allow frontend access
                 secure: true,
                 sameSite: 'None',
+                domain: 'login-backend-ayx4.onrender.com',
                 maxAge: 3600000,
             });
             res.cookie('csrfToken', csrfToken, {
@@ -86,7 +87,12 @@ app.post('/login', (req, res) => {
                 maxAge: 3600000,
             });
                
-
+            console.log('Cookies set:', {
+                role: user.role,
+                token,
+                csrfToken,
+            });
+            
             res.json({ message: 'Login successful' });
         });
     });
