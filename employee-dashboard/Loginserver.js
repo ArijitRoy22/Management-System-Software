@@ -1,4 +1,4 @@
-require('dotenv').config({ path: 'dashboard/src/components/.env' });
+require('dotenv').config();
 
 const express = require('express');
 const mysql = require('mysql2');
@@ -17,10 +17,11 @@ app.use(express.json());
 app.use(cookieParser()); // Parse cookies
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Ari22Jit@',
-    database: 'role_based_login_db'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 // Load secrets from the environment file
@@ -122,6 +123,7 @@ app.get('/protected', verifyToken, verifyCsrfToken, (req, res) => {
 });
 
 
-app.listen(5002, () => {
-    console.log('Server running on port 5002');
+const PORT = process.env.PORT || 5002;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

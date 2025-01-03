@@ -35,7 +35,7 @@ function App() {
         if (role === 4) {
             navigate('/Project');
         } else if (role === 5) {
-            navigate('/');
+            navigate('/Management-System-Sofware');
         }
     }, [role, navigate]);
 
@@ -61,10 +61,10 @@ function App() {
         <div className="App">
             <Sidebar role={role} onLogout={handleLogout} />
             <Routes>
-                {role === 2 && <Route path="/" element={<Overview />} />} {/* Admin */}
+                {role === 2 && <Route path="/Management-System-Sofware" element={<Overview />} />} {/* Admin */}
                 {role === 2 && <Route path="/Project" element={<Project />} />} {/* Admin */}
                 {role === 4 && <Route path="/Project" element={<Project />} />} {/* Project Manager */}
-                {role === 5 && <Route path="/" element={<Overview />} />} {/* Employee */}
+                {role === 5 && <Route path="/Management-System-Sofware" element={<Overview />} />} {/* Employee */}
             </Routes>
         </div>
     );
