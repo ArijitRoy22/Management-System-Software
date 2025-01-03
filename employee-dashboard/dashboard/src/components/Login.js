@@ -31,25 +31,19 @@ const Login = ({ onLogin }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(
-                'http://localhost:5002/login',
-                { email, password },
-                { withCredentials: true }
-            );
+            const backendUrl = process.env.REACT_APP_BACKEND_URL + '/login';
+            await axios.post(backendUrl, { email, password }, { withCredentials: true });
     
             const role = Cookies.get('role');
-            console.log('Retrieved role:', role);
             if (role) {
                 onLogin(parseInt(role, 10));
             } else {
                 setError('Failed to retrieve role from cookies');
             }
         } catch (error) {
-            console.error('Login error:', error);
             setError('Invalid credentials');
         }
-    };
-    
+    };    
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

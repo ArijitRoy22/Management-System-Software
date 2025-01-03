@@ -49,13 +49,15 @@ function App() {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:5002/logout', {}, { withCredentials: true });
+            const backendUrl = process.env.REACT_APP_BACKEND_URL + '/logout';
+            await axios.post(backendUrl, {}, { withCredentials: true });
             setRole(null);
             navigate('/');
         } catch (error) {
             console.error('Error logging out:', error);
         }
     };
+    
 
     if (role === null) {
         return <Login onLogin={handleLogin} />;

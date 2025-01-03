@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(cors({
-    origin: true, // Allow only your frontend app
+    origin: ['http://localhost:3000', 'https://your-github-username.github.io'], // Allow only your frontend app
     methods: ['GET', 'POST'],
     credentials: true, // Allow cookies to be sent
 }));
@@ -47,8 +47,6 @@ app.post('/logout', (req, res) => {
 // Login route
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    console.log('Request received:', req.body);
-    console.log('Cookies sent:', res.getHeaders()['set-cookie']);
 
     const query = 'SELECT * FROM users WHERE email = ?';
     db.execute(query, [email], (err, results) => {
@@ -96,9 +94,6 @@ app.post('/login', (req, res) => {
                 sameSite: 'Lax',
                 maxAge: 3600000,
             });
-            
-
-            console.log('Cookies sent:', { role: user.role, csrfToken }); // Debugging
 
             res.json({ message: 'Login successful' });
         });
