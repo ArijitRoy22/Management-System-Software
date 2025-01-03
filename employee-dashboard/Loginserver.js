@@ -71,7 +71,7 @@ app.post('/login', (req, res) => {
                 httpOnly: true,
                 secure: true,       // Cookies only sent over HTTPS
                 sameSite: 'None',   // Allow cross-origin cookies
-                domain: 'login-backend-ayx4.onrender.com', // Backend's domain
+                domain: '.onrender.com', // Wildcard domain,
                 maxAge: 3600000,    // 1 hour
             });
             
@@ -79,7 +79,8 @@ app.post('/login', (req, res) => {
                 httpOnly: false,    // Allow frontend access
                 secure: true,
                 sameSite: 'None',
-                domain: 'login-backend-ayx4.onrender.com',
+                domain: '.onrender.com', // Wildcard domain
+
                 maxAge: 3600000,
             });
             
@@ -87,7 +88,7 @@ app.post('/login', (req, res) => {
                 httpOnly: false,
                 secure: true,
                 sameSite: 'None',
-                domain: 'login-backend-ayx4.onrender.com',
+                domain: '.onrender.com', // Wildcard domain
                 maxAge: 3600000,
             });
             
