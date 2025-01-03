@@ -49,9 +49,7 @@ function App() {
 
     const handleLogout = async () => {
         try {
-            const backendUrl = process.env.REACT_APP_BACKEND_URL 
-            ? process.env.REACT_APP_BACKEND_URL + '/logout' 
-            : 'http://localhost:5002/logout';
+            const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://login-backend-ayx4.onrender.com/logout';
             await axios.post(backendUrl, {}, { withCredentials: true });
             setRole(null);
             navigate('/');

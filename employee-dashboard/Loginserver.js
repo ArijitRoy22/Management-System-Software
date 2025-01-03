@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://arijitroy22.github.io'], // Allow only your frontend app
+    origin: ['https://arijitroy22.github.io'], // Allow only your frontend app
     methods: ['GET', 'POST'],
     credentials: true, // Allow cookies to be sent
 }));
@@ -69,22 +69,20 @@ app.post('/login', (req, res) => {
 
             res.cookie('token', token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production', // Use true only in production
-                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                secure: true, // Cookies sent only over HTTPS
+                sameSite: 'None', // Cross-site cookies
                 maxAge: 3600000,
             });
-            
             res.cookie('role', user.role, {
-                httpOnly: false, // Allow access in frontend
-                secure: process.env.NODE_ENV === 'production', // Use true only in production
-                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                httpOnly: false, // Allow frontend access
+                secure: true,
+                sameSite: 'None',
                 maxAge: 3600000,
             });
-            
             res.cookie('csrfToken', csrfToken, {
                 httpOnly: false,
-                secure: process.env.NODE_ENV === 'production', // Use true only in production
-                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                secure: true,
+                sameSite: 'None',
                 maxAge: 3600000,
             });
                
@@ -126,7 +124,7 @@ app.get('/protected', verifyToken, verifyCsrfToken, (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

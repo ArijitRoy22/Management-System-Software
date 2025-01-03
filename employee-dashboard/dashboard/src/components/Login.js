@@ -31,9 +31,7 @@ const Login = ({ onLogin }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const backendUrl = process.env.NODE_ENV === 'production' 
-            ? 'https://login-backend-ayx4.onrender.com' 
-            : 'http://localhost:5002';
+            const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://login-backend-ayx4.onrender.com';
             await axios.post(backendUrl + '/login', { email, password }, { withCredentials: true });
             console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
     
