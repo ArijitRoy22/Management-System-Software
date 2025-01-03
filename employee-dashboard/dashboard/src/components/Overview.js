@@ -100,6 +100,10 @@ const Overview = () => {
             }, {});
             setStatusCounts(statusCounts);
 
+
+            //   const projectCounts = calculateProjectCounts(userProjectTaskMap);
+            //   setProjectCounts(projectCounts);
+
             const projectCounts = {};
             employeeData.forEach((employee) => {
                 const projects = userProjectTaskMap.get(employee.Emp_ID)?.projects || new Set();
@@ -137,6 +141,17 @@ const Overview = () => {
                 };
             });
 
+            // const customSearchFunction = (rows, searchText) => {
+            //     return rows.filter((row) => {
+            //       // Convert both row name and search text to lowercase to ensure case-insensitive matching
+            //       const fullName = row.original.name.toLowerCase();
+            //       const query = searchText.toLowerCase();
+                  
+            //       // Return rows where the name contains the exact search text
+            //       return fullName.includes(query);
+            //     });
+            //   };
+
             const totalMinutes = calculateTotalHours(timesheetData);
             const processedDataWithHours = processedData.map((employee) => ({
                 ...employee,
@@ -160,7 +175,7 @@ const Overview = () => {
         fetchData();
         const interval = setInterval(fetchData, 2000); // You can adjust the interval as needed
         return () => clearInterval(interval);
-    }, [employeesData, fetchData]); // Add employeesData to dependency array
+    }, [employeesData]); // Add employeesData to dependency array
 
     // Define columns for Material React Table
     const columns = useMemo(() => [
