@@ -31,13 +31,17 @@ const Login = ({ onLogin }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const backendUrl = process.env.REACT_APP_BACKEND_URL 
-            ? process.env.REACT_APP_BACKEND_URL + '/login' 
-            : 'http://localhost:5002/login';
-            await axios.post(backendUrl, { email, password }, { withCredentials: true });
+            const backendUrl = process.env.NODE_ENV === 'production' 
+            ? 'https://login-backend-ayx4.onrender.com' 
+            : 'http://localhost:5002';
+            await axios.post(backendUrl + '/login', { email, password }, { withCredentials: true });
             console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
     
+            console.log('Cookies:', document.cookie); // Log all cookies for debugging
+
             const role = Cookies.get('role');
+            console.log('Retrieved role:', role);
+
             if (role) {
                 onLogin(parseInt(role, 10));
             } else {

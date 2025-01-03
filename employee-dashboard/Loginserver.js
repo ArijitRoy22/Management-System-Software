@@ -68,25 +68,26 @@ app.post('/login', (req, res) => {
             const csrfToken = jwt.sign({}, CSRF_SECRET, { expiresIn: '1h' });
 
             res.cookie('token', token, {
-                httpOnly: true, // Prevent access via JavaScript
-                secure: true,   // Ensure cookies are sent over HTTPS
-                sameSite: 'None', // Required for cross-origin cookies
-                maxAge: 3600000, // Set cookie expiration time (1 hour)
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production', // Use true only in production
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                maxAge: 3600000,
             });
             
             res.cookie('role', user.role, {
                 httpOnly: false, // Allow access in frontend
-                secure: true,    // Ensure cookies are sent over HTTPS
-                sameSite: 'None',
+                secure: process.env.NODE_ENV === 'production', // Use true only in production
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 maxAge: 3600000,
             });
             
             res.cookie('csrfToken', csrfToken, {
                 httpOnly: false,
-                secure: true,
-                sameSite: 'None',
+                secure: process.env.NODE_ENV === 'production', // Use true only in production
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 maxAge: 3600000,
-            });            
+            });
+               
 
             res.json({ message: 'Login successful' });
         });
