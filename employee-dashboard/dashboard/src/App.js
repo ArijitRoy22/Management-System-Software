@@ -6,28 +6,23 @@ import Project from './components/Project';
 import Login from './components/Login';
 import './App.css';
 import axios from 'axios';
-import Cookies from 'js-cookie'; // Library for handling cookies
 
 function App() {
     const [role, setRole] = useState(null);
     const navigate = useNavigate();
 
-    // Fetch cookies to get role and verify user session
+    // Fetch role from localStorage
     useEffect(() => {
         const fetchRole = () => {
-            const roleCookie = Cookies.get('role');
-            if (roleCookie) {
-                setRole(parseInt(roleCookie, 10));
+            const storedRole = localStorage.getItem('role');
+            if (storedRole) {
+                setRole(parseInt(storedRole, 10));
             } else {
                 setRole(null); // Clear role if not found
             }
         };
 
         fetchRole();
-
-        // Optional: Poll cookies periodically
-        const interval = setInterval(fetchRole, 1000);
-        return () => clearInterval(interval); // Clean up interval on unmount
     }, []);
 
     // Redirect based on role
@@ -42,7 +37,7 @@ function App() {
             }
         }
     }, [role, navigate]);
-    
+
     const handleLogin = (role) => {
         setRole(role);
     };
@@ -51,13 +46,13 @@ function App() {
         try {
             const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://login-backend-ayx4.onrender.com/logout';
             await axios.post(backendUrl, {}, { withCredentials: true });
+            localStorage.clear(); // Clear localStorage
             setRole(null);
             navigate('/');
         } catch (error) {
             console.error('Error logging out:', error);
         }
     };
-    
 
     if (role === null) {
         return <Login onLogin={handleLogin} />;

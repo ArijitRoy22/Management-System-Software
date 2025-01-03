@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import './Login.css'; // Custom CSS for the login page
-import Cookies from 'js-cookie';
+import './Login.css';
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
@@ -32,23 +31,19 @@ const Login = ({ onLogin }) => {
         e.preventDefault();
         try {
             const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://login-backend-ayx4.onrender.com';
-            await axios.post(backendUrl + '/login', { email, password }, { withCredentials: true });
-            console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
-    
-            console.log('Cookies:', document.cookie); // Log all cookies for debugging
+            const response = await axios.post(backendUrl + '/login', { email, password });
+            const { token, role, csrfToken } = response.data;
 
-            const role = Cookies.get('role');
-            console.log('Retrieved role:', role);
+            // Store in localStorage
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
+            localStorage.setItem('csrfToken', csrfToken);
 
-            if (role) {
-                onLogin(parseInt(role, 10));
-            } else {
-                setError('Failed to retrieve role from cookies');
-            }
+            onLogin(parseInt(role, 10)); // Update the role in the app state
         } catch (error) {
             setError('Invalid credentials');
         }
-    };    
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

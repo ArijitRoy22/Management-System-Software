@@ -5,16 +5,14 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(cors({
     origin: ['https://arijitroy22.github.io'], // Allow only your frontend app
     methods: ['GET', 'POST'],
-    credentials: true, // Allow cookies to be sent
+    credentials: true,
 }));
 app.use(express.json());
-app.use(cookieParser()); // Parse cookies
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -23,26 +21,16 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     waitForConnections: true,
-    connectionLimit: 1000, // Adjust as per your requirement
-    queueLimit: 0
+    connectionLimit: 1000,
+    queueLimit: 0,
 });
 
-
-// Load secrets from the environment file
 const JWT_SECRET = process.env.JWT_SECRET;
 const CSRF_SECRET = process.env.CSRF_SECRET;
-console.log(JWT_SECRET)
 
 if (!JWT_SECRET || !CSRF_SECRET) {
     throw new Error('JWT_SECRET and CSRF_SECRET must be set in the .env file');
 }
-
-app.post('/logout', (req, res) => {
-    res.clearCookie('token'); // Clear authentication token
-    res.clearCookie('role'); // Clear role cookie
-    res.clearCookie('csrfToken')
-    res.status(200).json({ message: 'Logged out successfully' });
-});
 
 // Login route
 app.post('/login', (req, res) => {
@@ -67,47 +55,24 @@ app.post('/login', (req, res) => {
             const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
             const csrfToken = jwt.sign({}, CSRF_SECRET, { expiresIn: '1h' });
 
-            res.cookie('token', token, {
-                httpOnly: true,
-                secure: true,       // Cookies only sent over HTTPS
-                sameSite: 'None',   // Allow cross-origin cookies
-                domain: '.onrender.com', // Wildcard domain,
-                maxAge: 3600000,    // 1 hour
-            });
-            
-            res.cookie('role', user.role, {
-                httpOnly: false,    // Allow frontend access
-                secure: true,
-                sameSite: 'None',
-                domain: '.onrender.com', // Wildcard domain
-
-                maxAge: 3600000,
-            });
-            
-            res.cookie('csrfToken', csrfToken, {
-                httpOnly: false,
-                secure: true,
-                sameSite: 'None',
-                domain: '.onrender.com', // Wildcard domain
-                maxAge: 3600000,
-            });
-            
-               
-            console.log('Cookies set:', {
-                role: user.role,
+            res.json({
+                message: 'Login successful',
                 token,
+                role: user.role,
                 csrfToken,
             });
-            
-            res.json({ message: 'Login successful' });
         });
     });
 });
 
+// Logout route
+app.post('/logout', (req, res) => {
+    res.status(200).json({ message: 'Logged out successfully' });
+});
 
 // Verify token middleware
 function verifyToken(req, res, next) {
-    const token = req.cookies.token;
+    const token = req.headers.authorization?.split(' ')[1];
 
     if (!token) return res.status(401).json({ error: 'Unauthorized' });
 
@@ -134,7 +99,6 @@ function verifyCsrfToken(req, res, next) {
 app.get('/protected', verifyToken, verifyCsrfToken, (req, res) => {
     res.json({ message: 'Protected data', user: req.user });
 });
-
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
